@@ -11,6 +11,9 @@ layout: default
 
   {%- if site.posts.size > 0 -%}
     <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
+
+
+
     <ul class="post-list">
       {%- for post in site.posts -%}
       <li>
@@ -23,6 +26,23 @@ layout: default
         </h3>
         {%- if site.show_excerpts -%}
           {{ post.excerpt }}
+        {%- endif -%}
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <ul class="post-list">
+      {%- for krepa in site.krepes -%}
+      <li>
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        <span class="krepa-meta">{{ krepa.date | date: date_format }}</span>
+        <h3>
+          <a class="krepa-link" href="{{ krepa.url | relative_url }}">
+            {{ krepa.title | escape }}
+          </a>
+        </h3>
+        {%- if site.show_excerpts -%}
+          {{ krepa.excerpt }}
         {%- endif -%}
       </li>
       {%- endfor -%}
